@@ -1,0 +1,28 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\usetikzlibrary{automata, shapes, graphs, quotes, positioning, arrows, chains, scopes, calc, trees, arrows.meta}
+\tikzstyle{event} = [rectangle, draw, fill=gray!05, text width=5.5em, text centered, minimum height=4em]
+\tikzstyle{function} = [rectangle, draw, fill=gray!02, text width=5.5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{decision} = [diamond, draw, fill=gray!02, text width=5.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{point} = [circle, inner sep=0pt, minimum size=0pt]
+
+\newcommand{\handlenode}[2]{\node (#1-#2) [function] {handle #1 #2};}
+\newcommand{\ezpt}[1]{\node (#1) [point] {};}
+
+\begin{tikzpicture}[auto]
+    \matrix[row sep=6mm, column sep=10mm] {
+        \node (thread-arrived-start) [function, text width=15em] {\texttt{handle\_thread\_arrived(event)}}; \\
+        \node (set-ready) [function, text width=15em] {set thread to ready (\texttt{event->thread->\\set\_ready(event->time)})}; \\
+        \node (add-queue) [function, text width=18em] {add thread to ready queue (\texttt{scheduler->\\add\_to\_ready\_queue(event->thread)})}; \\
+        \node (check-cpu-idle) [decision] {cpu idle?}; & \node (create-event) [event] {create new dispatcher invoked event}; \\
+        \node (return) [function] {return}; & \node (add-event) [function, text width=10em] {add new event to event queue (\texttt{add\_event(event)})}; \\
+    };
+        \path (thread-arrived-start) edge[->] (set-ready);
+        \path (set-ready) edge[->] (add-queue);
+        \path (add-queue) edge[->] (check-cpu-idle);
+        \path (check-cpu-idle) edge[->] node{yep} (create-event);
+        \path (create-event) edge[->] (add-event);
+        \path (add-event) edge[->] (return);
+        \path (check-cpu-idle) edge[->] node{nope} (return);
+\end{tikzpicture}
+\end{document}

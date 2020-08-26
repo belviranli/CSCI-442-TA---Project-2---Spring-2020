@@ -1,0 +1,62 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Deliverables}
+\label{sec:deliverables}
+You are required to submit each deliverable by 23:59 on the due date, however you may take advantage of your slip days to turn the deliverable in late.
+
+The first deliverable should be submitted through Canvas, while the second deliverable must be submitted using your GitHub repository, created from the GitHub classroom link that will be provided on Canvas.
+
+\subsection{Deliverable 1 Due: \donedate}
+This deliverable is designed to help you understand the simulation framework and does not involve any coding. 
+
+\textbf{[D.1]} For every \texttt{handle\_*} function, draw a flow chart illustrating what needs to occur in these functions to handle the given event type. 
+\begin{itemize}
+    \item Figures \ref{fig:thread-arr} and \ref{fig:disp-invoked}, for \texttt{handle\_thread\_arrived} and \texttt{handle\_dispatcher\_invoked}, respectively, are provided to help provide an understanding of the type of diagram that you need you create. These diagrams reference functions that may need to be implemented, but whose declarations are in the starter code. Figure \ref{fig:des} is a diagram illustrating the entire next-event simulation. Most of the functionality within Figure \ref{fig:des} should be implemented in the \texttt{Simulation} class.
+\end{itemize}
+
+
+% \textbf{[D.1]} \textbf{Event diagrams:} Create a state diagram that illustrates how the next-event simulation works for this project. This diagram should contain all of the different types of events that are possible to be reached in the simulation, as well as how the simulation transitions between them. In addition, create diagrams for each of the seven event handler functions, similar to those in Figures \ref{fig:thread-arr} and \ref{fig:disp-invoked}.
+
+\textbf{[D.1]} Using the simulation provided in Appendix \ref{app:d-one-sim} and both the FCFS and RR algorithms: 
+\begin{itemize}
+    \item Create a trace of events and transitions, by hand (i.e., not programmatically). 
+    \item In addition, calculate all the required statistics and metrics for the simulation, by hand (i.e., not programmatically)---see Section \ref{sec:out-format} for the simulation output requirements, and Appendix \ref{app:example-simple-output} for an example of what you would need to turn in.
+\end{itemize}
+
+Submit these items through Canvas.
+
+\subsection{Deliverable 2: Due: \dtwodate}
+\textbf{[D.2]} Implement the entire process simulation. Using starter code is optional as long as your code passes the items in the checklist and tests given in Section \ref{sec:grading}.
+\subsubsection{D2 CHECKLIST}
+Please MAKE SURE you do all the following, prior to submission:
+\begin{enumerate}
+    \item Your code compiles on ALAMODE machines: To compile your code, the grader should be to \texttt{cd} into the root directory of your repository and simply type \texttt{make} using the provided \texttt{makefile}.
+    \item Your simulation should be able to be executed by typing \texttt{./cpu-sim} in the root directory of your repository.
+    \item You keep the \texttt{makefile}, the \texttt{test-my-work.sh}, and \texttt{submit-my-work} files, as well as the \texttt{src/}, \texttt{submission-details/}, and \texttt{tests/} folders from the starter code, in the root directory of your repository.
+    \item Your program parses input flags correctly, and outputs the correct information in response. See Sections \ref{sec:cmd-line} and \ref{sec:out-format}.
+    \item Your program determines the file to parse from the command line.
+    \item You have the full simulation logic implemented.
+    \item The FCFS, RR and PRIORITY algorithms are implemented.
+    \item All required metrics are displayed on program completion and match the user input flag choices.
+    \item Any improper command line input should cause your program to print the help message and then immediately exit.
+    \item Your code passes all the tests given in Section \ref{sec:grading} on ALAMODE machines.
+    \item Make sure the \texttt{submission-details/} folder contains:
+    \begin{itemize}
+        \item An \texttt{author} file that contains your name: from the root of your repository, type \texttt{echo YOUR NAME > submission-details/author}
+        \item A \texttt{time-spent} file that contains the time you have spent on this project, in \emph{minutes}: Please keep entering \texttt{echo MINUTES >> submission-details/time-spent} as you progress through the project.
+    \end{itemize}
+    \item Extra credit algorithms (MLFQ and CUSTOM) should be included in your submission, if you decide to do so.
+    \begin{itemize}
+        \item If you have implemented the multi-level feedback queue algorithm, create a file inside \texttt{submission-details/} called \texttt{mlfq}: within the directory, run this command: \texttt{touch mflq}
+        \item If you have implemented a custom algorithm, create a file inside \texttt{submission-details/} called \texttt{custom} that contains the metric that your algorithm improves upon: within the directory, run this command: \texttt{echo metric > custom} (replace \texttt{metric} with your chosen metric from Section \ref{sec:algos}!)
+    \end{itemize}
+    \item You \textit{commit}ed and \textit{push}ed your code. %\item You tag a version of your code with the tag \texttt{p2-finished}.
+    \item The submission script, \texttt{submit-my-work}, successfully runs. 
+    \begin{itemize}
+        \item This script has been provided with the starter code so that your code compiles and it is properly committed at the time of submission.
+        \item To use it, make sure that it has execution permissions (\texttt{chmod +x submit-my-work}) and type \texttt{./submit-my-work} from the root of your repository.
+    \end{itemize} 
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,43 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Simulation Constraints}
+\label{sec:sim-info}
+
+The program will simulate process scheduling on a hypothetical computer system with the following attributes:
+
+\begin{enumerate}
+    \item There is a single CPU, so only one process can be running at a time.
+    \item There are an infinite number of I/O devices, so any number of processes can be blocked on I/O at the same time.
+    \item Processes consist of one or more kernel-level threads (KLTs).
+    \item Threads (not processes) can exist in one of five states:
+    \begin{enumerate}
+        \item \texttt{NEW}
+        \item \texttt{READY}
+        \item \texttt{RUNNING}
+        \item \texttt{BLOCKED}
+        \item \texttt{EXIT}
+    \end{enumerate}
+    \item Dispatching threads requires a non-zero amount of OS overhead:
+    \begin{enumerate}
+        \item If the previously executed thread belongs to a different process than the new thread, a full process switch occurs. This is also the case for the first thread being executed.
+        \item If the previously executed thread belongs to the same process as the new thread being dispatched, a cheaper thread switch is done.
+        \item A full process switch includes any work required by a thread switch.
+    \end{enumerate}
+    \item Threads, processes, and dispatch overhead are specified via a file whose format is specified in the next section.
+    \item Each thread requires a sequence of CPU and I/O bursts of varying lengths as specified by an input file.
+    \item Processes have an associated priority, specified as part of the file. Each thread in a process has the same priority as its parent process.
+    \begin{enumerate}
+        \item \texttt{0: SYSTEM} (highest priority)
+        \item \texttt{1: INTERACTIVE}
+        \item \texttt{2: NORMAL}
+        \item \texttt{3: BATCH} (lowest priority)
+    \end{enumerate}
+    \item All processes have a distinct process ID, specified as part of the file. Thread IDs are unique only within the context of their owning process (so the first thread in every process has an ID of 0).
+    \item Overhead is incurred only when dispatching a thread (transitioning it from \texttt{READY} to \texttt{RUNNING}); all other OS actions require zero OS overhead. For example, adding a thread to a ready queue or initiating I/O are both "free".
+    \item Threads for a given process can arrive at any time, even if some other process is currently running (i.e., some external entity---not the CPU---is responsible for creating threads).
+    \item Threads get executed, not processes.
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,48 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Testing your simulation and grading}
+\label{sec:grading}
+Grading for this project is dependent on your program's ability to produce the correct output given a simulation input file, so it is vital that you follow all output formatting requirements.
+\begin{itemize}
+    \item The \texttt{tests/} folder in the starter code contains a number of input and output pairs that your simulation will be tested against. 80\% of your D2 grade will be based on the successful execution of the script below. The scripts runs your simulation for every input file in the \texttt{tests/input/} folder, and runs \texttt{diff} between the output of your simulation against the reference outputs under \texttt{tests/output/} folder. If there is no difference (i.e., no output), your simulation ran as expected. 
+    \item The remaining 20\% of your D2 grade will be based on the input files we will generate during grading. This is to make sure that you haven't hard-coded the outputs in your simulation. 
+    \item You should expect your code to be evaluated based on how similar it is to the expected output by using a function such as \texttt{diff}. Make sure that all debugging and other non-required print statements have been commented out before submitting your code. Both \texttt{stdout} and \texttt{stderr} will be captured, so ensure that nothing unexpected is going to be printed to either of these output streams. Logger functionality is provided with the starter code to help ensure that your program will output as expected by the grading scripts.
+\end{itemize}
+
+In order for you to easily test your simulation against the inputs and outputs under the \texttt{tests/} folder, we have provided a bash script named \texttt{test-my-work.sh} in the root directory of your repository. You can run it by typing \texttt{./test-my-work.sh} (ensure it has execution permissions). For a specific, input/output/parameter combination, if the output of your simulation does not match the expected output, the testing will stop and give you more details. Otherwise, it will print a \texttt{Test passed!} message. We will use a similar script in our grading. 
+
+%\begin{itemize}
+%    \item First come, first served
+%    \begin{itemize}
+%        \item \texttt{./cpu-sim -a FCFS input\_simulation > output-fcfs-no-flags}
+%        \item \texttt{./cpu-sim -t -a FCFS input\_simulation > output-fcfs-t-flags}
+%        \item \texttt{./cpu-sim -m -a FCFS input\_simulation > output-fcfs-m-flags}
+%        \item \texttt{./cpu-sim -v -a FCFS input\_simulation > output-fcfs-v-flags} 
+%    \end{itemize}
+%    \item Round robin
+%    \begin{itemize}
+%        \item \texttt{./cpu-sim -a RR input\_simulation > output-rr-no-flags}
+%        \item \texttt{./cpu-sim -t -a RR input\_simulation > output-rr-t-flags}
+%        \item \texttt{./cpu-sim -m -a RR input\_simulation > output-rr-m-flags}
+%        \item \texttt{./cpu-sim -v -a RR input\_simulation > output-rr-v-flags}
+%        \item \texttt{./cpu-sim -s 4 -a RR input\_simulation > output-rr-no-flags}
+%        \item \texttt{./cpu-sim -s 4 -t -a RR input\_simulation > output-rr-t-s4-flags}
+%        \item \texttt{./cpu-sim -s 4 -m -a RR input\_simulation > output-rr-m-s4-flags}
+%        \item \texttt{./cpu-sim -s 4 -v -a RR input\_simulation > output-rr-v-s4-flags}
+%        \item \texttt{./cpu-sim -s 6 -a RR input\_simulation > output-rr-no-flags}
+%        \item \texttt{./cpu-sim -s 6 -t -a RR input\_simulation > output-rr-t-s6-flags}
+%        \item \texttt{./cpu-sim -s 6 -m -a RR input\_simulation > output-rr-m-s6-flags}
+%        \item \texttt{./cpu-sim -s 6 -v -a RR input\_simulation > output-rr-v-s6-flags}
+%    \end{itemize}
+%    \item Priority
+%    \begin{itemize}
+%        \item \texttt{./cpu-sim -a PRIORITY input\_simulation > output-priority-no-flags}
+%        \item \texttt{./cpu-sim -t -a PRIORITY input\_simulation > output-priority-t-flags}
+%        \item \texttt{./cpu-sim -m -a PRIORITY input\_simulation > output-priority-m-flags}
+%        \item \texttt{./cpu-sim -v -a PRIORITY input\_simulation > output-priority-v-flags}
+%    \end{itemize}
+%\end{itemize}
+
+
+\end{document}

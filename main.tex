@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+\usepackage[mode=buildnew]{standalone}
+% Layout Options
+\usepackage[margin = 1.0in]{geometry}
+\geometry{letterpaper}
+
+\usepackage{acjpreamble}
+\usepackage{listings}
+
+ \usepackage[normalem]{ulem}
+
+\lstset{
+tabsize = 4, %% set tab space width
+    showstringspaces = false, %% prevent space marking in strings, string is defined as the text that is generally printed directly to the console
+    numbers = left, %% display line numbers on the left
+    commentstyle = \color{gray}, %% set comment color
+    keywordstyle = \color{blue}, %% set keyword color
+    stringstyle = \color{red}, %% set string color
+    rulecolor = \color{black}, %% set frame color to avoid being affected by text color
+    basicstyle = \small \ttfamily , %% set listing font and size
+    breaklines = true, %% enable line breaking
+    numberstyle = \tiny,
+}
+
+
+% \setlength{\headheight}{15.2pt}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    {\Huge Project 2 \par \vspace{0.5cm}}
+    %{\huge Operating Systems \par \vspace{0.5cm}}
+    {\Large A CPU Scheduling Simulator \par}
+    {\normalsize   \par}
+
+    \vfill
+    {\normalsize Operating Systems \par}
+    {\normalsize Department of Computer Science \par}
+    {\normalsize Colorado School of Mines \par}
+    {\normalsize \today \par}
+    \thispagestyle{empty}
+    \thispagestyle{empty}
+\end{titlepage}
+
+\clearpage
+\pagestyle{fancy}
+\lhead[Project 2 --- CPU Scheduling Simulator]{Project 2 --- CPU Scheduling Simulator}
+\rhead[CSCI 442 --- Operating Systems]{CSCI 442 --- Operating Systems}
+
+\newcommand{\assigndate}{March 7, 2020}
+\newcommand{\donedate}{23:59 \sout{March 16, 2020} March 30, 2020}
+\newcommand{\dtwodate}{23:59 \sout{April 6, 2020} April 13, 2020}
+\newcommand{\dthreedate}{23:59 March 30, 2020}
+%--------------------------------------------------
+%	INTRODUCTION
+%--------------------------------------------------
+
+
+\begin{center}
+{\large Assigned Date: \assigndate} \\ \vspace{0.35em}
+{\Large Deliverable 1 Due: \donedate} \\ \vspace{0.325em}
+{\Large Deliverable 2 Due: \dtwodate}
+\end{center}
+
+\section*{Introduction}
+The goal of this project is to develop a CPU scheduling simulation that will complete the execution of a
+group of multi-threaded processes. It will support several different scheduling algorithms. The
+user can then specify which one to use via a command-line flag. At the end of execution, your program will calculate and
+display several performance criteria obtained by the simulation.
+
+Learning goals:
+\begin{enumerate}
+    \item You will have better familiarity with one of the main roles of any operating system: process scheduling.
+    \item You will become familiar with event-driven simulation.
+    \item You will understand the performance implications of using different scheduling algorithms.
+    In the future, you can reuse these concepts (scheduling, simulation, etc) in any optimization task you are given in your professional life.
+\end{enumerate}
+
+This project must be implemented in C++, and it must execute correctly on the computers in the Alamode lab.
+
+\subfile{files/simulation-info.tex}
+\subfile{files/scheduling-algorithms.tex}
+\subfile{files/next-event-simulation.tex}
+\subfile{files/deliverables.tex}
+\subfile{files/grading.tex}
+\subfile{files/getting-started.tex}
+%\subfile{files/requirements.tex}
+\subfile{files/input-format.tex}
+\subfile{files/command-line.tex}
+\subfile{files/output-format.tex}
+
+% \subfile{files/starter-code.tex}
+
+
+\clearpage
+\appendix
+\appendixpage
+
+\section{Deliverable 1 Simulation}
+\label{app:d-one-sim}
+
+\lstinputlisting{inputs/d1_simulation}
+
+\section{Example Simulation Output}
+\label{app:example-simple-output}
+
+For the following simulation:
+\lstinputlisting{inputs/simple_simulation}
+
+this was output:
+
+\lstinputlisting{outputs/simple_sim_output}
+
+\subfile{files/func-apps.tex}
+
+\end{document}
+
+%--------------------------------------------------
+%	References
+%--------------------------------------------------
+
+% If you have references they go here, just comment out both lines
+
+%\bibliography{references}
+%\bibliographystyle{IEEEtran}
+
+% \clearpage
+% \appendix
+% \appendixpage
+
+% \end{document}

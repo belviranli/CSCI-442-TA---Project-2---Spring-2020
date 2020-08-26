@@ -1,0 +1,51 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Next-Event Simulation}
+\label{sec:ne-sim}
+Your simulation structure must follow the next-event pattern. At any given time, the simulation is in a single
+state. The simulation state can only change at event times, where an event is defined as an occurrence
+that may change the state of the system.
+
+Since the simulation state only changes at an event, the ”clock” can be advanced to the next scheduled
+event–regardless of whether the next event is 1 or 1,000,000 time units in the future. This is why it is called
+a ”next-event” simulation model. In our case, time is measured in simple ”units”.
+Your simulation must support the following event types:
+
+\begin{itemize}
+    \item \texttt{THREAD ARRIVED}: A thread has been created in the system.
+    \item \texttt{THREAD DISPATCH COMPLETED}: A thread switch has completed, allowing a new thread to start executing on the CPU.
+    \item \texttt{PROCESS DISPATCH COMPLETED}: A process switch has completed, allowing a new thread to start executing on the CPU.
+    \item \texttt{CPU BURST COMPLETED}: A thread has finished one of its CPU bursts and has initiated an I/O request.
+    \item \texttt{IO BURST COMPLETED}: A thread has finished one of its I/O bursts and is once again ready to be executed.
+    \item \texttt{THREAD COMPLETED}: A thread has finished the last of its CPU bursts.
+    \item \texttt{THREAD PREEMPTED}: A thread has been preempted during execution of one of its CPU bursts.
+    \item \texttt{DISPATCHER INVOKED}: The OS dispatcher routine has been invoked to determine the next thread to be run on the CPU.
+\end{itemize}
+
+The main loop of the simulation should consist of processing the next event, perhaps adding more future
+events in the queue as a result, advancing the clock (by taking the next scheduled event from the front of
+the event queue), and so on until all threads have terminated. See Figure \ref{fig:des} for an illustration of the event simulation. Rounded rectangles indicate functions that you will need to implement to handle the associated event types.
+
+\begin{figure}
+    \centering
+    \includestandalone[width=0.90\textwidth]{files/diagrams/des-diagram.tex}
+    \caption{A high level illustration of the next-event simulation. In the starter code, all of this functionality is to be implemented within the \texttt{Simulation} class. Rounded rectangles represent functions, while diamonds are decisions that lead to different actions being taken. For example, if the event type is determined to be \texttt{THREAD ARRIVED}, then the \texttt{handle\_thread\_arrived(event)} function should be called.}
+    \label{fig:des}
+\end{figure}
+
+
+\subsection{Event Queue}
+
+Events are scheduled via an event queue. The event queue is a priority queue that contains future events;
+the priority of each item in the queue corresponds to its scheduled time, where the event with the highest
+"priority" (at the front of the queue) is the one that will happen next.
+
+To determine the next event to handle, a priority queue is used to sort the events. For this project, the event queue should sort based on these criteria:
+\begin{itemize}
+    \item The time the event occurs. The earliest time comes first (time 3 comes before time 12).
+    \item If two events have the time, then the tie breaker should be the events' number: as each new event is created, it should be assigned a number representing how many events have been created. For example, the first event in the simulation should be given the number \texttt{0}, the second the number \texttt{1}, and so on. The earliest number should come first (event number 6 comes before event number 7).
+\end{itemize}
+
+
+
+\end{document}

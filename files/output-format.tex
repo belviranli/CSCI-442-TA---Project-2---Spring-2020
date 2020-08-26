@@ -1,0 +1,52 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Output Formatting}
+\label{sec:out-format}
+
+For efficient and fair grading, it is vital that your simulation outputs information in a well-defined way. The starter code provides functionality for printing information, and it is \emph{strongly encouraged} that you use it. The information that your simulation prints is dependent on the flags that the user has input, and in the following sections we describe what should be printed for each flag.
+
+\subsection{No flags input}
+
+If the user has not input any flags to your program, you should only output the following:
+
+\begin{verbatim}
+SIMULATION COMPLETED!
+\end{verbatim}
+
+\subsection{\texttt{--metrics}}
+
+When the \texttt{metrics} flag has been passed to your simulation, it should output the following information:
+
+\lstinputlisting{outputs/outputs_metrics}
+
+\subsection{\texttt{--per\_thread}}
+
+When the \texttt{per\_thread} flag has been passed to your simulation, it should output information about each of the threads.
+
+\lstinputlisting{outputs/outputs_per_thread}
+
+\subsection{\texttt{--verbose}}
+
+When the \texttt{verbose} flag has been passed to your simulation, it should output, at each state transition, information about the state transition that is occurring. It should be outputting this information "on the fly".
+
+\lstinputlisting[firstline=1, lastline=10]{outputs/outputs_verbose}
+
+This continues until the end of the simulation:
+
+\lstinputlisting[firstline=290, lastline=303]{outputs/outputs_verbose}
+
+\subsection{Multiple Flags}
+
+If multiple flags are input, all should be printed, in this order:
+\begin{enumerate}
+    \item The verbose information.
+    \item \texttt{SIMULATION COMPLETED!}
+    \item Per thread metrics.
+    \item General simulation metrics.
+\end{enumerate}
+
+\subsection{Recommendations}
+
+Again, it is highly recommended that you take advantage of the existing logger functionality!
+
+\end{document}

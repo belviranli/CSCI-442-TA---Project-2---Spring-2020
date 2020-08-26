@@ -1,0 +1,54 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\usetikzlibrary{automata, shapes, graphs, quotes, positioning, arrows, chains, scopes, calc, trees, arrows.meta}
+\tikzstyle{event} = [rectange, draw, fill=gray!05, text centered, minimum height=4em]
+\tikzstyle{function} = [rectangle, draw, fill=gray!02, text width=5.5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{decision} = [diamond, draw, fill=gray!02, text width=5.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{point} = [circle, inner sep=0pt, minimum size=0pt]
+
+\newcommand{\handlenode}[2]{\node (#1-#2) [function] {handle #1 #2};}
+\newcommand{\ezpt}[1]{\node (#1) [point] {};}
+
+\begin{tikzpicture}[auto]
+    \matrix[row sep=3mm, column sep=6mm] {
+    & & & & \node (run-sim) [function] {run simulation}; & & & &\\
+    & & & & \node [function] (read-file) {read\\simulation\\file}; & & & & \\
+    \node (p1) [point] {}; & & & & \node [decision] (queue-empty) {event in the queue?}; & & & \node [function] (end) {end simulation}; & \\
+    & & & & \node [decision] (event-type) {determine event type}; & & & & \\
+    & \ezpt{bta} & \ezpt{bdc} & \ezpt{bcbc} & \ezpt{aet} & \ezpt{btc} & \ezpt{btp} & \ezpt{bdi} &\\
+    & & & & & & & &\\
+    & \handlenode{thread}{arrived} & \handlenode{dispatch}{completed} & \handlenode{cpu-burst}{completed} & \handlenode{io-burst}{completed} & \handlenode{thread}{completed} & \handlenode{thread}{preempted} & \handlenode{dispatcher}{invoked} &\\
+    & & & & & & & &\\
+    & \ezpt{ata} & \ezpt{adc} & \ezpt{acbc} & \ezpt{aibc} & \ezpt{atc} & \ezpt{atp} & \ezpt{adi} &\\
+    & & & & & & & &\\
+    \node (p3) [point] {}; & & & & \node (p4) [point] {}; & & & &\\
+    };
+    \path (run-sim) edge[->] (read-file)
+        (read-file) edge[->] (queue-empty)
+        (queue-empty) edge[->] node{yes} (event-type)
+        (queue-empty) edge[->] node{no} (end)
+        (event-type) edge (aet)
+        (aet) edge (bta)
+        (aet) edge (bdi)
+        (bta) edge[->] node[font=\scriptsize]{thread arrived} (thread-arrived)
+        (bdc) edge[->] node[font=\scriptsize]{dispatch completed} (dispatch-completed)
+        (bcbc) edge[->] node[font=\scriptsize]{cpu-burst completed} (cpu-burst-completed)
+        (aet) edge[->] node[font=\scriptsize]{io-burst completed} (io-burst-completed)
+        (btc) edge[->] node[font=\scriptsize]{thread completed} (thread-completed)
+        (btp) edge[->] node[font=\scriptsize]{thread preempted} (thread-preempted)
+        (bdi) edge[->] node[font=\scriptsize]{dispatcher invoked} (dispatcher-invoked)
+        (aibc) edge (p4)
+        (ata) edge (aibc)
+        (adi) edge (aibc)
+        (thread-arrived) edge[->] (ata)
+        (dispatch-completed) edge[->] (adc)
+        (cpu-burst-completed) edge[->] (acbc)
+        (io-burst-completed) edge[->] (aibc)
+        (thread-completed) edge[->] (atc)
+        (thread-preempted) edge[->] (atp)
+        (dispatcher-invoked) edge[->] (adi)
+        (p4) edge (p3)
+        (p3) edge (p1)
+        (p1) edge[->] (queue-empty);
+\end{tikzpicture}
+\end{document}

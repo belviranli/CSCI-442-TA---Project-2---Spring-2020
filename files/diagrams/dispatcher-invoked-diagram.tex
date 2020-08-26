@@ -1,0 +1,55 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\usetikzlibrary{automata, shapes, graphs, quotes, positioning, arrows, chains, scopes, calc, trees, arrows.meta}
+\tikzstyle{event} = [rectangle, draw, fill=gray!05, text width=5.5em, text centered, minimum height=4em]
+\tikzstyle{function} = [rectangle, draw, fill=gray!02, text width=5.5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{decision} = [diamond, draw, fill=gray!02, text width=5.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{point} = [circle, inner sep=0pt, minimum size=0pt]
+
+\newcommand{\handlenode}[2]{\node (#1-#2) [function] {handle #1 #2};}
+\newcommand{\ezpt}[1]{\node (#1) [point] {};}
+
+\begin{tikzpicture}[auto]
+    \matrix[row sep=6mm, column sep=10mm] {
+        & \node (dispatcher-invoked-start) [function, text width=18em] {\texttt{handle\_dispatcher\_invoked(event)}}; &\\
+        & \node (check-cpu-idle) [decision] {cpu idle?}; & \node (cpu-not idle) [event] {set the previous thread to be the active thread}; &\\
+        & \node (a-cpu-idle) [point] {}; &  &\\
+        & \node (get-next-thread) [function, text width=10em] {try to get the next thread from the scheduling algorithm (\texttt{scheduler->\\get\_next\_thread()})}; & \node (a-cpu-not-idle) [point] {};\\
+        \node (set-active-thread) [event] {set the active cpu thread to be the new thread}; & \node (did-get-thread) [decision] {did we get a thread?}; & \node (no-thread) [event] {set the cpu to idle}; & \node (r-no-thread) [point] {};\\
+        \node (a-sat) [point] {}; & \node (a-dgt) [point] {}; & \node (a-nt) [point] {};  &\\
+        \node (thread-dispatch) [event] {next event will be a thread dispatch}; & \node (get-dispatch-type) [decision] {is the new thread from the same process as the previous thread?}; & \node (process-dispatch) [event] {next event will be a process dispatch}; &\\
+        \node (a-td) [point] {}; & \node (a-dt) [point] {}; & \node (a-pd) [point] {}; &\\
+        & \node (update-dispatch-time) [event] {update the time spent on dispatch}; &\\
+        & \node (create-event) [event] {create a new event with the appropriate information}; &\\
+        & \node (add-event) [function, text width=10em] {add new event to event queue (\texttt{add\_event(event)})}; &\\
+        & \node (return) [function] {return}; & & \node (right-return) [point] {};\\
+    };
+    \path (dispatcher-invoked-start) edge[->] (check-cpu-idle);
+    \path (check-cpu-idle) edge[->] node{nope} (cpu-not idle);
+    \path (check-cpu-idle) edge[->] node{yep} (get-next-thread);
+    \path (get-next-thread) edge[->] (did-get-thread);
+    \path (did-get-thread) edge[->] node{yep} (set-active-thread);
+    \path (did-get-thread) edge[->] node{nope} (no-thread);
+    \path (set-active-thread) edge (a-sat);
+    \path (a-sat) edge (a-dgt);
+    \path (a-dgt) edge[->] (get-dispatch-type);
+    \path (get-dispatch-type) edge[->] node{yep} (thread-dispatch);
+    \path (get-dispatch-type) edge[->] node{nope} (process-dispatch);
+    \path (thread-dispatch) edge (a-td);
+    \path (a-td) edge (a-dt);
+    \path (process-dispatch) edge (a-pd);
+    \path (a-pd) edge (a-dt);
+    \path (a-dt) edge[->] (update-dispatch-time);
+    \path (update-dispatch-time) edge[->] (create-event);
+    \path (create-event) edge[->] (add-event);
+    \path (add-event) edge[->] (return);
+    
+    \path (cpu-not idle) edge (a-cpu-not-idle);
+    \path (a-cpu-not-idle) edge[->] (get-next-thread);
+    
+    \path (no-thread) edge (r-no-thread);
+    \path (r-no-thread) edge (right-return);
+    \path (right-return) edge[->] (return);
+    
+\end{tikzpicture}
+\end{document}

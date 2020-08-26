@@ -1,0 +1,94 @@
+At time 0:
+    THREAD_ARRIVED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from NEW to READY
+
+At time 0:
+    DISPATCHER_INVOKED
+    Thread 0 in process 0 [INTERACTIVE]
+    Selected from 1 threads. Will run to completion of burst.
+
+At time 7:
+    PROCESS_DISPATCH_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from READY to RUNNING
+
+At time 11:
+    CPU_BURST_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from RUNNING to BLOCKED
+
+At time 16:
+    IO_BURST_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from BLOCKED to READY
+
+At time 16:
+    DISPATCHER_INVOKED
+    Thread 0 in process 0 [INTERACTIVE]
+    Selected from 1 threads. Will run to completion of burst.
+
+At time 19:
+    THREAD_DISPATCH_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from READY to RUNNING
+
+At time 22:
+    CPU_BURST_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from RUNNING to BLOCKED
+
+At time 28:
+    IO_BURST_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from BLOCKED to READY
+
+At time 28:
+    DISPATCHER_INVOKED
+    Thread 0 in process 0 [INTERACTIVE]
+    Selected from 1 threads. Will run to completion of burst.
+
+At time 31:
+    THREAD_DISPATCH_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from READY to RUNNING
+
+At time 32:
+    THREAD_COMPLETED
+    Thread 0 in process 0 [INTERACTIVE]
+    Transitioned from RUNNING to EXIT
+
+SIMULATION COMPLETED!
+
+Process 0 [INTERACTIVE]:
+    Thread  0:    ARR: 0      CPU: 8      I/O: 11     TRT: 32     END: 32    
+
+SYSTEM THREADS:
+    Total Count:                  0
+    Avg. response time:        0.00
+    Avg. turnaround time:      0.00
+
+INTERACTIVE THREADS:
+    Total Count:                  1
+    Avg. response time:        7.00
+    Avg. turnaround time:     32.00
+
+NORMAL THREADS:
+    Total Count:                  0
+    Avg. response time:        0.00
+    Avg. turnaround time:      0.00
+
+BATCH THREADS:
+    Total Count:                  0
+    Avg. response time:        0.00
+    Avg. turnaround time:      0.00
+
+Total elapsed time:             32
+Total service time:              8
+Total I/O time:                 11
+Total dispatch time:            13
+Total idle time:                11
+
+CPU utilization:            65.62%
+CPU efficiency:             25.00%
+

@@ -1,0 +1,58 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Scheduling Algorithms}
+\label{sec:algos}
+
+You scheduling simulator must support three different scheduling algorithms. These are as follows, with the corresponding flag value indicated in parenthesis:
+
+\begin{itemize}
+    \item First Come, First Served (\texttt{--algorithm FCFS})
+    \item Round Robin (\texttt{--algorithm RR})
+    \item Priority (\texttt{--algorithm PRIORITY})
+\end{itemize}
+
+\subsection{First Come, First Served (FCFS)}
+First come, first served should be implemented as described in your textbook. That is to say, threads are scheduled in the order that they are added to the queue, and they run in the CPU until their burst is complete. There is not preemption in this algorithm, and all the process priorities are treated as equal.
+
+\subsection{Round Robin (RR)}
+Round robin should be implemented as described in your textbook. That is to say, threads are scheduled in the order that they are added to the queue. However, unlike FCFS, threads may be preempted if their CPU burst length is greater than the round robin time slice. In the event of a preemption, the thread is removed from the CPU and placed at the back of the ready queue. The CPU burst length is updated to reflect the time that it was able to spend on the CPU. All the process priorities are treated as equal.
+
+The default time slice for the algorithm shall be 3, however, the user may input via command line flag a custom time slice.
+
+\subsection{Priority (PRIORITY)}
+Your priority scheduling algorithm is a non-preemptive algorithm that uses four separate first come, first served ready queues. These queues consist of the following:
+\begin{itemize}
+    \item Queue 0: Dedicated to threads whose processes are of type \texttt{SYSTEM}.
+    \item Queue 1: Dedicated to threads whose processes are of type \texttt{INTERACTIVE}.
+    \item Queue 2: Dedicated to threads whose processes are of type \texttt{NORMAL}.
+    \item Queue 3: Dedicated to threads whose processes are of type \texttt{BATCH}.
+\end{itemize}
+
+Your priority algorithm should select a new thread from the highest priority queue available (\texttt{SYSTEM} is a higher priority than \texttt{INTERACTIVE}, etc.)
+
+\subsection{Extra Credit Algorithms}
+For up to 10\% extra credit each, you may implement the following scheduling algorithms.
+
+\subsubsection{Multi-level Feedback Queue (MLFQ)}
+Your multi-level feedback queue algorithm (\texttt{--algorithm MLFQ}) should follow these requirements:
+
+\begin{itemize}
+    \item There are 10 queues.
+    \item The algorithm is preemptive with a default time slice of 3, but the user is able to input a custom slice from the command line (using the \texttt{-s, --time\_slice} flag).
+    \item New threads are placed in the queue corresponding to its process priority.
+    \item When \emph{preempted}, threads are demoted to the next lower queue level (if possible).
+\end{itemize}
+
+\subsubsection{Custom (CUSTOM)}
+You are to design your own custom scheduling algorithm (\texttt{--algorithm CUSTOM}), with the requirement that it must be better than the first come, first served algorithm in one metric from the following list:
+
+\begin{itemize}
+    \item Average response time (averaged across all threads): \texttt{response-time}
+    \item Average turnaround time (averaged across all threads): \texttt{turnaround-time}
+    \item CPU utilization: \texttt{cpu-utilization}
+    \item CPU efficiency: \texttt{cpu-efficiency}
+\end{itemize}
+
+The second item in the list is what you should add to the \texttt{custom} file (see Section \ref{sec:deliverables}).
+
+\end{document}

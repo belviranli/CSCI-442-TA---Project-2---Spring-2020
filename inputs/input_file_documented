@@ -1,0 +1,28 @@
+2 3 7       // 2 processes, thread overhead is 3, process overhead is 7
+
+0 1 2       // Process 0, Priority is INTERACTIVE, it contains 2 threads
+0 3         // The first thread arrives at time 0 and has 3 bursts
+4 5         // The first pair of bursts: CPU is 4, IO is 5
+3 6         // The second pair of bursts: CPU is 3, IO is 6
+1           // The last CPU burst has a length of 1
+
+1 2         // The second thread in Process 0 arrives at time 1 and has 2 bursts
+2 2         // The first pair of bursts: CPU is 2, IO is 2
+7           // The last CPU burst has a length of 7
+
+1 0 3       // Process 1, priority is SYSTEM, it contains 3 threads
+5 3         // The first thread arrives at time 5 and has 3 bursts
+4 1         // The first pair of bursts: CPU is 4, IO is 1
+2 2         // The second pair of bursts: CPU is 2, IO is 2
+2           // The last CPU burst has a length of 2
+
+6 2         // The second thread arrives at time 6 and has 2 bursts
+2 2         // The first pair of bursts: CPU is 2, IO is 2
+3           // The last CPU burst has a length of 3
+
+7 5         // The third thread arrives at time 7 and has 5 bursts
+5 7         // CPU burst of 5 and IO of 7
+2 1         // CPU burst of 2 and IO of 1
+8 1         // CPU burst of 8 and IO of 1
+5 7         // CPU burst of 5 and IO of 7
+3           // The last CPU burst has a length of 3

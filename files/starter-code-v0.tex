@@ -1,0 +1,43 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Starter Code}
+\label{sec:starter-code}
+
+To help you get started, you have been provided starter code. The starter code is awesome and works super well, there are no bugs, and it is a perfect implementation of the project. You should totally use it.
+
+This project is a great example of how we can use object-oriented programming concepts to encapsulate otherwise abstract ideas. As such, C++ is a natural fit for this programming project. The starter code takes advantage of a number of object-oriented paradigms such as class inheritance and polymorphism. For example, an abstract base class, called \texttt{Scheduler} is defined that contains a number of functions and variables that make sense for implementing the various algorithms. We then create derived classes for each of the scheduling algorithms that we need to implement based off of this parent class. This enables us to encapsulate the entire functionality for a given scheduling algorithm within this class, and so no \emph{simulation} logic needs to be adjusted for the different algorithms.
+
+In practical terms, we have split the functionality for the simulation of executing threads and the functionality for selecting which threads to execute into different components. Once you have the simulation logic working, you should not have to make any changes to it once you switch from using the first come, first served algorithm to a round robin or priority algorithm. In fact, by taking advantage of polymorphism, your simulation does not even \emph{know} which algorithm it is currently executing! All it knows is that it is calling the base class \texttt{Scheduler}, whose functionality is overwritten by the algorithm that the user has input to your program. This enables you to write code that is more extendable, easier to understand, easier to write, and easier to debug.
+
+In addition to skeleton implementations of the classes that you will need to implement for the project, the starter code provides a fairly comprehensive suite of unit tests to help you implement the simulation functionality. Unit testing is an excellent way of helping you write code that works as intended. One goal of this project is that you will be able to see how beneficial unit testing can be while programming complex projects. While in the real world, unit tests would be something that you yourself design to help you when implementing a project, they have been provided for you in this project to help guide you, as well as to help ensure that your program works as intended. In addition, part of your grade is dependent on your simulation passing these unit tests.
+
+\subsection{Provided Classes}
+
+The starter code provides you with a skeleton implementations of the classes that you will need to implement for the project. 
+
+(SHOULD THIS BE DISCUSSED HERE, OR SHOULD WE DIRECT THEM TO LOOK AT THE STARTER CODE, WHERE THIS INFORMATION WILL BE?)
+
+\subsubsection{Burst}
+
+The burst class is probably the most basic class for this project. It contains information and functionality for handling a single CPU or IO burst.
+
+\subsubsection{Thread}
+
+\subsubsection{Event}
+
+\subsubsection{Process}
+
+\subsubsection{Scheduling Decision}
+
+\subsubsection{System Stats}
+
+\subsubsection{Flags}
+
+\subsubsection{Logger}
+
+\subsubsection{Scheduler}
+
+\subsubsection{Simulation}
+
+\end{document}

@@ -1,0 +1,33 @@
+num_processes thread_switch_overhead process_switch_overhead
+
+process_id process_type num_threads     // Process IDs are unique
+thread_0_arrival_time num_cpu_bursts
+cpu_time io_time
+cpu_time io_time
+...                                     // Repeat for num_cpu_bursts
+cpu_time                                
+
+thread_1_arrival_time num_cpu_bursts
+cpu_time io_time
+cpu_time io_time
+...                                     // Repeat for num_cpu_bursts
+cpu_time                                
+
+...                                     // Repeat for the number of threads
+
+process_id process_type num_threads     // We are now reading in the next process
+thread_0_arrival_time num_cpu_bursts
+cpu_time io_time
+cpu_time io_time
+...                                     // Repeat for num_cpu_bursts
+cpu_time                                
+
+thread_1_arrival_time num_cpu_bursts
+cpu_time io_time
+cpu_time io_time
+...                                     // Repeat for num_cpu_bursts
+cpu_time                                
+
+...                                     // Repeat for the number of threads
+
+...                                     // Keep reading until EOF is reached

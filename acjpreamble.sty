@@ -1,0 +1,282 @@
+\ProvidesPackage{acjpreamble}
+
+% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{parskip}
+
+% Images
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+% AMS Packages
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+
+% Math Tools
+\usepackage{mathtools}
+
+% Better math mode bold
+\usepackage{bm}
+
+% Misc Symbols
+\usepackage{gensymb}
+
+% Pretty Units & Fractions
+\usepackage{units}
+
+% List customization
+%\usepackage{enumitem}
+
+% Customize Titles
+\usepackage{titlesec}
+
+% Pretty Captions
+\usepackage[font=footnotesize,labelfont=footnotesize]{caption}
+
+% Put images and stuff where I want them
+\usepackage{float}
+
+% "Smart" quotes
+% \usepackage [autostyle, english = american]{csquotes}
+% \MakeOuterQuote{"}
+
+% Make URLs look better in References
+\usepackage[obeyspaces]{url}
+
+% Prettier tables
+\usepackage{booktabs}
+
+% Proper Code Styling
+\usepackage{listings}
+
+% MATLAB Code Styling
+\usepackage{matlab-prettifier}
+
+% References and citations
+\usepackage{cite}
+
+% Cool Appendices
+\usepackage{appendix}
+
+% Larger math symbols
+\usepackage{relsize}
+
+% Captions for things on a figure-by-figure or table-by-table basis
+\usepackage{capt-of}
+
+% Rotate pages to landscape
+\usepackage{pdflscape}
+
+% Double spacing
+\usepackage{setspace}
+%\doublespacing
+
+% Allow use of subfiles
+\usepackage{subfiles}
+
+% Include pdfs
+\usepackage{pdfpages}
+
+% Something for Arrays?
+\usepackage{array,makecell}
+
+% Customize captions
+\usepackage{caption}
+
+% Adds more symbols
+\usepackage{textcomp}
+
+% Customize lists
+\usepackage{enumitem}
+
+% Add multi-row columns to tables
+\usepackage{multirow}
+
+% Customize Table of Contents
+\usepackage{titletoc}
+
+% Add mini-Table of Contents
+\usepackage{minitoc}
+
+% Include pdfs more easily
+\usepackage{pdflscape}
+
+% Make things hyperlinked
+\usepackage{hyperref}
+
+% Import Tables
+\usepackage{csvsimple}
+
+% Headers
+\usepackage{fancyhdr}
+
+% Additional Math Mode Environments
+\usepackage{amsmath}
+
+% Allows you to stack things?
+\usepackage{stackengine}
+
+% TikZ for Automata and Stuff
+\usepackage{tikz}
+\usetikzlibrary{automata, shapes, graphs, quotes, positioning, arrows, chains, scopes, calc, trees, arrows.meta}
+
+% Algorithms
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+% Nicer Trees
+\usepackage{forest}
+
+% More Math Symbols
+\usepackage{mathabx}
+
+% Modern Fonts
+\usepackage{lmodern}
+
+% Multiple columns
+\usepackage{multicol}
+
+%----------------------------------------------------------------------------------------
+%	Customize the look of code listings
+%----------------------------------------------------------------------------------------
+
+\lstset{
+tabsize = 4, %% set tab space width
+    showstringspaces = false, %% prevent space marking in strings, string is defined as the text that is generally printed directly to the console
+    numbers = left, %% display line numbers on the left
+    commentstyle = \color{gray}, %% set comment color
+    keywordstyle = \color{blue}, %% set keyword color
+    stringstyle = \color{red}, %% set string color
+    rulecolor = \color{black}, %% set frame color to avoid being affected by text color
+    basicstyle = \fontsize{8}{10}\ttfamily , %% set listing font and size
+    breaklines = true, %% enable line breaking
+    numberstyle = \tiny,
+}
+
+%----------------------------------------------------------------------------------------
+%	Does something with nodes and edges in tikz
+%----------------------------------------------------------------------------------------
+
+% \tikzset{%
+%         ->,  % makes the edges directed
+%         >=stealth', % makes the arrow heads bold
+%         node distance=8mm, % specifies the minimum distance between two nodes. Change if n
+%         every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ n
+%         initial text=$ $, % sets the text that appears on the start arrow
+%         }
+
+%----------------------------------------------------------------------------------------
+%	Customize the look of things (fancyhdr)
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	New and Customized Commands
+%----------------------------------------------------------------------------------------
+
+% Lists start with letters, e.g. (a)
+% \renewcommand{\labelenumi}{ (\alph{enumi}) }
+%  \renewcommand{\labelenumii}{ (\roman{enumii}) }
+
+% Easier cosine with parenthesis
+\let\oldcos\cos
+\renewcommand{\cos}[1]{\oldcos \hspace{-0.15em} \left( #1 \right)}
+
+% Easier sine with parenthesis
+\let\oldsin\sin
+\renewcommand{\sin}[1]{\oldsin \hspace{-0.15em} \left( #1 \right)}
+
+% Easier arctangent with parenthesis
+\let\oldarctan\arctan
+\renewcommand{\arctan}[2]{\oldarctan \hspace{-0.15em} \left( \frac{#1}{#2} \right)}
+
+% Matrix variable with a pre-superscript and subscript
+\newcommand{\matrx}[3]{\prescript{#1}{}{\bm{\mathrm{#2}}_{#3}}}
+
+% Unit vector notation
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+
+% Easier Full Sized Fractions
+\let\oldfrac\frac{}{}
+\renewcommand{\frac}[2]{\displaystyle \oldfrac{#1}{#2}}
+
+% Matrix representation of a rotation about the z-axis
+\newcommand{\rotz}[1]{
+\begin{bmatrix}
+\cos{#1}        &&      -\sin{#1}       &&      0 \\
+\sin{#1}        &&      \sin{#1}        &&      0 \\
+0               &&      0               &&      1 \\
+\end{bmatrix}}
+
+% Matrix representation of a rotation about the y-axis
+\newcommand{\roty}[1]{
+\begin{bmatrix}
+\cos{#1}        &&      0       &&      \sin{#1} \\
+0               &&      1       &&      0 \\
+-\sin{#1}       &&      0       &&      \cos{#1} \\
+\end{bmatrix}}
+
+% Matrix representation of a rotation about the x-axis
+\newcommand{\rotx}[1]{
+\begin{bmatrix}
+1       &&      0               &&      0 \\
+0       &&      \cos{#1}        &&      -\sin{#1} \\
+0       &&      \sin{#1}        &&      \cos{#1} \\
+\end{bmatrix}}
+
+% Probability
+\newcommand{\prob}[1]{\textrm{P} \hspace{-0.15em} \left( #1 \right)}
+
+% Easier cosine and sine shorthand
+
+\newcommand{\co}[0]{c_{1}}
+\newcommand{\ct}[0]{c_{2}}
+\newcommand{\cth}[0]{c_{3}}
+
+\newcommand{\ctth}[0]{c_{23}}
+
+\newcommand{\so}[0]{s_{1}}
+\newcommand{\st}[0]{s_{2}}
+\newcommand{\sth}[0]{s_{3}}
+
+\newcommand{\stth}[0]{s_{23}}
+
+% CCW Arrow for Summing Moments
+
+\newcommand\CircArrowLeft[1]{\stackengine{-.3ex}{#1}{\CAL}{O}{c}{F}{F}{L}}
+\newcommand\CAL{\scalebox{2}{\rotatebox[origin=center]{90}{$\circlearrowleft$}}}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Grammars (modified from ntdmath.sty) %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\first}[1]{\textsc{first} \ensuremath{ \left( \texttt{#1} \right)} }
+\newcommand{\follow}[1]{\textsc{follow} \ensuremath{ \left( \texttt{#1} \right)} }
+\newcommand{\set}[1]{\ensuremath{\left\{#1\right\}}}
+\newcommand{\settt}[1]{\ensuremath{\left\{\texttt{#1}\right\}}}
+\newcommand{\bnftable}[2]{\ensuremath{\nonterm{#1} \rightarrow #2}} 
+\newcommand{\ttepsilon}{\text{\tt{\textgreek{ε}}}}
+
+\newcommand{\ittt}[1]{\text{\ttfamily{#1}}}
+
+\newcommand{\bftt}[1]{\text{\ttfamily{\fontseries{b}\selectfont#1}}}
+
+\newcommand{\nontermfont}[1]{\text{\ttfamily{#1}}}
+\newcommand{\nonterm}[1]{\ensuremath{\langle}\nontermfont{#1}\ensuremath{\rangle}}
+
+% \newcommand{\nonterm}[1]{\ensuremath{\langle\ittt{#1}\rangle}}
+\newcommand{\token}[1]{\ensuremath{\text{\ttfamily{#1}}}}
+
+%----------------------------------------------------------------------------------------
+%	Customize the look of things (Memoir class only)
+%----------------------------------------------------------------------------------------
+
+%\openany
+%\makechapterstyle{diggerloop}{%
+%\renewcommand*{\chaptitlefont}{\normalfont\huge\bfseries}
+%\renewcommand*{\printchaptername}{}
+%\renewcommand*{\chapternamenum}{}
+%\renewcommand*{\chapnumfont}{\chaptitlefont}
+%\renewcommand*{\printchapternum}{\chapnumfont\thechapter\space\space}
+%\renewcommand*{\afterchapternum}{}
+
+%}

@@ -1,0 +1,49 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Command Line Parsing}
+\label{sec:cmd-line}
+
+Your simulation must support invocation in the format specified below, including the following command line flags:
+
+\begin{verbatim}
+./cpu-sim [flags] [simulation_file]
+
+-h, --help
+    Print a help message on how to use the program.
+    
+-m, --metrics
+    If set, output general metrics for the simulation.
+    
+-s, --time_slice [positive integer]
+    The time slice for preemptive algorithms.
+    
+-t, --per_thread
+    If set, outputs per-thread metrics at the end of the simulation.
+    
+-v, --verbose
+    If set, outputs all state transitions and scheduling choices.
+    
+-a, --algorithm <algorithm>
+    The scheduling algorithm to use. Valid values are:
+        FCFS: first come, first served (default)
+        RR: round robin scheduling
+        PRIORITY: priority-based scheduling
+        MLFQ: multi-level feedback queue
+        CUSTOM: a custom algorithm
+\end{verbatim}
+
+Users should be able to pass any flags together, in any order, provided that:
+
+\begin{itemize}
+    \item If the \texttt{--help} flag is set, a help message is printed to \texttt{stdout} and the program \textit{immediately} exits.
+    \item If \texttt{--time\_slice} is set, it must be followed immediately by a positive integer.
+    \item If \texttt{--algorithm} is set, it must be followed immediately by an algorithm choice.
+    \item If \texttt{--algorithm} is not set, your program shall default to using first come, first served as its scheduling algorithm.
+    \item If a filename is not provided, the program shall read in from \texttt{stdin}.
+\end{itemize}
+
+Any improper command line input should cause your program to print the help message and then immediately exit. Information on proper output formatting can be found in Section \ref{sec:out-format}.
+
+You are \emph{strongly encouraged} to use the \texttt{getopt} family of functions to perform the command line parsing. Information on \texttt{getopt} can be found here: \url{http://man7.org/linux/man-pages/man3/getopt.3.html}
+
+\end{document}

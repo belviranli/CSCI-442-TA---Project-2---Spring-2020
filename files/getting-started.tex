@@ -1,0 +1,22 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Getting Started}
+\label{sec:started}
+
+Starter code has been provided for you to help you get started. The starter code contains complete code that implements logger functionality, a class called \texttt{Logger}, so that you can easily print output in the correct format. The \texttt{Simulation} class has its functionality for reading and parsing the simulation file implemented for you, but you will need to implement the rest of the functionality for the next-event simulation. A number of other classes have also been provided, however you will need to implement many of them. The starter code contains documentation to help you understand how these classes and their functionality should be implemented, so it is recommended that you read through the starter code carefully before starting to program.
+
+Included with the starter code is a string formatting library, fmtlib\footnote{\url{https://github.com/fmtlib/fmt}}. To use the string formatting library, you will need to \texttt{\#include "utilities/fmt/format.h"} in your file. You can see an example of how to use the library within \texttt{src/utilities/logger.cpp}.
+
+% To use the unit testing library, create a file suffixed with \texttt{\_tests.cpp}, and add \texttt{\#include "utilities/flags/flags.hpp"} to it. You can then define test cases using \texttt{TEST\_CASE("Test name", "[Test-Suite]")}. An example of a set of test cases are provided in \texttt{src/utilities/flag\_tests.cpp}. 
+
+You are free to use the starter code and the libraries if you find them beneficial for implementing your project. You are not required to use any of the provided starter code, and as long as your program is implemented in  C++, runs on the Alamode computers, does not crash, meets all specified requirements, and produces the correct output, you are free to design your program as you see fit.
+
+% In addition, a program is provided that will generate valid, random simulation files, found in \texttt{verification/}. This is provided so that you can ensure that your program will not crash on inputs. Along with the simulation generator is a few pairs of simulation inputs and simulation outputs that you can use to check to see if your simulation is running correctly, as well as to double check your formatting. A shell script is also provided to help automate this process.
+
+The starter code includes a \texttt{makefile} that builds everything under the \texttt{src/} directory, placing temporary files in a \texttt{bin/} directory and the program itself, named \texttt{cpu-sim}, in the root of the repository. Do not make changes to the \texttt{makefile} without prior approval by the instructors.
+
+% It also includes a \texttt{make tests} target that automatically builds all \texttt{*\_tests.cpp} files placed anywhere under the \texttt{src/} directory, and executes the \texttt{cpu-sim-tests} program that is used to run the tests.
+
+Chapter 9 in your textbook describes uniprocessor scheduling, and provides good background information on what you are trying to implement. It also provides a number of diagrams that you may find helpful for understanding how threads should be between states (for example, Figure 9.1).
+
+\end{document}
